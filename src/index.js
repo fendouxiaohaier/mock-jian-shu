@@ -4,7 +4,7 @@ import App from './App';
 
 // 引入全局样式第二步，引入样式组件
 import {GlobalStyle } from './styled.js';
-import GlobalIconFontStyle from './statics/iconfont/iconfont.js';
+import GlobalIconFontStyle from './statics/iconfont/iconfontt.js';
 
 
 // 引入全局样式第三步，使用样式组件
@@ -12,7 +12,7 @@ ReactDOM.render(
                 (
                     <React.Fragment>
                         <GlobalStyle />
-                        <GlobalIconFontStyle></GlobalIconFontStyle>
+                        <GlobalIconFontStyle/>
                         <App />
                     </React.Fragment>
                 ), 

@@ -22,7 +22,7 @@ class Header extends Component {
                     <NavItem className="left">下载App</NavItem>
                     <NavItem className="right">登录</NavItem>
                     <NavItem className="right">
-                        <i className="iconfont">&#xe627;</i>
+                        <i className="iconfont">&#xe605;</i>
                     </NavItem>
                     <SearchWrapper>
                         <NavSearch></NavSearch>
