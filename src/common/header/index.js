@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { CSSTransition } from 'react-transition-group';
+
 import {
     HeaderWrapper,
     Logo,
@@ -11,7 +13,18 @@ import {
 } from "./styled.js";
 
 class Header extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            focused: false
+        }
+
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+    }
+
+
     render() {
         return (
             <HeaderWrapper>
@@ -25,8 +38,18 @@ class Header extends Component {
                         <i className="iconfont">&#xe605;</i>
                     </NavItem>
                     <SearchWrapper>
-                        <NavSearch></NavSearch>
-                        <i className="iconfont">&#xe601;</i>
+                        <CSSTransition
+                            in={this.state.focused}
+                            timeout={20000}
+                            classNames="slide"
+                        >
+                            <NavSearch 
+                                className={this.state.focused ? "focused": ""}
+                                onFocus={this.handleFocus}
+                                onBlur={this.handleBlur}
+                            ></NavSearch>
+                        </CSSTransition>
+                        <i className={this.state.focused ? "focused iconfont": "iconfont"}>&#xe601;</i>
                     </SearchWrapper>
                     
                 </Nav>
@@ -41,6 +64,18 @@ class Header extends Component {
 
             </HeaderWrapper>
         );
+    }
+
+    handleFocus() {
+        this.setState({
+            focused: true
+        });
+    }
+
+    handleBlur() {
+        this.setState({
+            focused: false
+        }); 
     }
 
 }
