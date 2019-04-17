@@ -38,18 +38,8 @@ class Header extends Component {
                         <i className="iconfont">&#xe605;</i>
                     </NavItem>
                     <SearchWrapper>
-                        <CSSTransition
-                            in={this.state.focused}
-                            timeout={20000}
-                            classNames="slide"
-                        >
-                            <NavSearch 
-                                className={this.state.focused ? "focused": ""}
-                                onFocus={this.handleFocus}
-                                onBlur={this.handleBlur}
-                            ></NavSearch>
-                        </CSSTransition>
-                        <i className={this.state.focused ? "focused iconfont": "iconfont"}>&#xe601;</i>
+                        <NavSearch></NavSearch>
+                        <i className={"iconfont"}>&#xe601;</i>
                     </SearchWrapper>
                     
                 </Nav>
