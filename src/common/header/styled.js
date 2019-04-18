@@ -16,6 +16,9 @@ export const Logo = styled.a`
     left: 0;
     background: url(${logoUrl});
     background-size: contain;
+
+    opacity: 0;  /*暂时隐藏*/
+
 `;
 
 export const Nav = styled.div`
@@ -57,7 +60,22 @@ export const SearchWrapper = styled.div`
         text-align: center;
         border: 1px solid #ccc;
         border-radius: 15px;
-        transition: all 2s ease-in;
+
+        &.slide-enter {
+            transition: all .3s ease-in;
+        }
+        &.slide-enter-active,
+        &.slide-enter-done {
+            background-color: #999;
+        }
+        
+        &.slide-exit {
+            transition: all .3s ease-in;
+        }
+        &.slide-exit-active,
+        &.slide-exit-done {
+            background-color: transparent;
+        }
     }
 `;
 
@@ -73,16 +91,24 @@ export const NavSearch = styled.input.attrs({
     outline: none;
     background: #eee;
     font-size: 14px;
-    transition: all 2s ease-in;
     &::placeholder {
         color: #999;
     }
-    &:focus {
-        width: 300px;
 
-        & + .iconfont {
-            background: #777;
-        }
+    &.slide-enter {
+        transition: all .3s ease-in;
+    }
+    &.slide-enter-active,
+    &.slide-enter-done {
+        width: 300px;
+    }
+    
+    &.slide-exit {
+        transition: all .3s ease-in;
+    }
+    &.slide-exit-active,
+    &.slide-exit-done {
+        width: 160px;
     }
 `;
 
