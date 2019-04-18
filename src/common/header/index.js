@@ -33,8 +33,8 @@ class Header extends Component {
                             classNames="slide"
                         >
                             <NavSearch
-                                onFocus={this.props.handleFocus}
-                                onBlur={this.props.handleBlur}
+                                onFocus={this.props.handleInoutFocus}
+                                onBlur={this.props.handleInoutBlur}
                             ></NavSearch>
                         </CSSTransition>
                         <CSSTransition
@@ -71,11 +71,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleFocus() {
+        handleInoutFocus() {
             const action = {type: "search_focus"};
             dispatch(action);
         },
-        handleBlur() {
+        handleInoutBlur() {
             const action = {type: "search_blur"};
             dispatch(action);
         }
