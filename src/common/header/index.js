@@ -66,7 +66,9 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.header.get("focused")
+        //       两种获取数据的方式是一样的getIn为嵌套获取
+        //       state.get("header").get("focused")
+        focused: state.getIn(["header", "focused"])
     }
 }
 
