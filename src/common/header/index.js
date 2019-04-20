@@ -9,6 +9,10 @@ import {
     Nav,
     NavItem,
     SearchWrapper,
+    SearchInfo,
+    SearchTitle,
+    SearchList,
+    SearchItem,
     NavSearch,
     Addition,
     Button
@@ -45,6 +49,23 @@ class Header extends Component {
                         >
                             <i className={"iconfont"}>&#xe601;</i>
                         </CSSTransition>
+
+                        <SearchInfo className={this.props.focused ? "focused" : ""}>
+                            <SearchTitle>
+                                <span>热门搜索</span>
+                                <a>换一批</a>
+                            </SearchTitle>
+                            <SearchList>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">react</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                               <SearchItem><a href="">小程序</a></SearchItem>
+                            </SearchList>
+                        </SearchInfo>
                     </SearchWrapper>
                     
                 </Nav>

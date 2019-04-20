@@ -79,6 +79,70 @@ export const SearchWrapper = styled.div`
     }
 `;
 
+export const SearchInfo = styled.div`
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 250px;
+    padding: 20px 20px 10px;
+    border-radius: 4px;
+    margin-top: 9px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    display: none;
+    &.focused {
+        display: block;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top:-8px;
+        border: 8px solid;
+        border-color: #fff; transparent transparent #fff;
+        transform: rotate(45deg);
+    }
+`;
+
+export const SearchTitle = styled.div`
+    height: 20px;
+    margin-bottom: 10px;
+    & > span {
+        float: left;
+        font-size: 14px;
+        color: #969696;
+    }
+    & > a {
+        float: right;
+        float: right;
+        font-size: 13px;
+        color: #969696;
+        background-color: transparent;
+        border-width: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+`;
+
+export const SearchList = styled.ul`
+
+`;
+
+export const SearchItem = styled.li`
+    margin-right: 10px;
+    display: inline-block;
+    line-height: 28px;
+    & > a {
+        padding: 2px 6px;
+        font-size: 12px;
+        color: #787878;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+`;
+
 export const NavSearch = styled.input.attrs({
     placeholder: "搜索"
 })`
@@ -100,7 +164,7 @@ export const NavSearch = styled.input.attrs({
     }
     &.slide-enter-active,
     &.slide-enter-done {
-        width: 300px;
+        width: 250px;
     }
     
     &.slide-exit {
