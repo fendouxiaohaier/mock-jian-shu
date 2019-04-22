@@ -19,12 +19,39 @@ import {
 } from "./styled.js";
 
 class Header extends Component {
+    getHotSearchList() {
+        const { list, curIndex } = this.props;
+        const hotSearchList = [];
+        const newList = list.toJS();
+        const newListLen = newList.length;
+
+        if(newList.length > 0) {
+            for(let i=curIndex; i<(curIndex+10); i++) {
+                console.log(i%newListLen);
+                hotSearchList.push(
+                    <SearchItem key={ newList[i%newListLen] }>
+                        <a href="/">
+                            {newList[i%newListLen]}
+                        </a>
+                    </SearchItem>
+                );
+            }
+        }
+
+        return hotSearchList;
+    }
+
     render() {
         const { 
-            focused, 
+            focused,
+            mouseIn, 
+            curIndex,
+            list,
             handleInoutFocus, 
             handleInoutBlur, 
-            list 
+            handleMouseEnter,
+            handleMouseLeave,
+            handleChangeSearchList
         } = this.props;
 
         return (
@@ -57,23 +84,18 @@ class Header extends Component {
                             <i className={"iconfont"}>&#xe601;</i>
                         </CSSTransition>
 
-                        <SearchInfo className={focused ? "focused" : ""}>
+                        <SearchInfo 
+                            className={(focused || mouseIn) ? "focused" : ""}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
                             <SearchTitle>
                                 <span>热门搜索</span>
-                                <a href="www.baidu.com">换一批</a>
+                                <a href="/" 
+                                    onClick={(e) => {handleChangeSearchList(curIndex, list.toJS().length, e)}}
+                                >换一批</a>
                             </SearchTitle>
-                            <SearchList>
-                                {
-                                    list.map((item) => {
-                                        return  <SearchItem key={item}>
-                                                    <a href="www.baidu.com">
-                                                        {item}
-                                                    </a>
-                                                </SearchItem>
-                                    })
-                                }
-                              
-                            </SearchList>
+                            <SearchList>{ this.getHotSearchList() }</SearchList>
                         </SearchInfo>
                     </SearchWrapper>
                     
@@ -99,6 +121,8 @@ const mapStateToProps = (state) => {
         //       两种获取数据的方式是一样的getIn为嵌套获取
         //       state.get("header").get("focused")
         focused: state.getIn(["header", "focused"]),
+        mouseIn: state.getIn(["header", "mouseIn"]),
+        curIndex: state.getIn(["header", "curIndex"]),
         list: state.getIn(["header", "list"])
     }
 }
@@ -111,6 +135,17 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleInoutBlur() {
             dispatch(actionCreators.searchBlurAction());
+        },
+        handleMouseEnter() {
+            dispatch(actionCreators.searchMouseEnter());
+        },
+        handleMouseLeave() {
+            dispatch(actionCreators.searchMouseLeave());
+        },
+
+        handleChangeSearchList(curIndex, totleLength, e) {
+            e.preventDefault();  // 阻止a标签的默认事件
+            dispatch(actionCreators.ChangeSearchList((curIndex + 10) % totleLength));
         }
     }
 }

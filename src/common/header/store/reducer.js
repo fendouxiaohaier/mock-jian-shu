@@ -4,6 +4,8 @@ import { fromJS } from "immutable";
 // 创建immutable数据
 const initialState = fromJS({
     focused: false,
+    mouseIn: false,  // 鼠标是否移入热门搜索显示框
+    curIndex: 0,  // 热门搜索index坐标，表示下一次显示热门搜索应该从list数据的哪里开始选取，一共选取10个
     list: []   // 内部的对象数据也会被转化为immutable
 });
 
@@ -17,8 +19,15 @@ const reducer = (state = initialState, action) => {
             return state.set("focused", false);
         
         case constants.GET_SEARCH_LIST:
-            return state.set("list", action.data);
+            return state.merge({"list": action.data});
         
+        case constants.SEARCH_MOUSE_ENTER:
+            return state.set("mouseIn", true);
+        case constants.SEARCH_MOUSE_LEAVE:
+            return state.set("mouseIn", false);
+
+        case constants.CHANGE_SEARCH_LIST:
+            return state.set("curIndex", action.curIndex);
         default:
             return state;
     }
