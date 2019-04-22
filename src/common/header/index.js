@@ -53,17 +53,19 @@ class Header extends Component {
                         <SearchInfo className={this.props.focused ? "focused" : ""}>
                             <SearchTitle>
                                 <span>热门搜索</span>
-                                <a>换一批</a>
+                                <a href="www.baidu.com">换一批</a>
                             </SearchTitle>
                             <SearchList>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">react</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
-                               <SearchItem><a href="">小程序</a></SearchItem>
+                                {
+                                    this.props.list.map((item) => {
+                                        return  <SearchItem key={item}>
+                                                    <a href="www.baidu.com">
+                                                        {item}
+                                                    </a>
+                                                </SearchItem>
+                                    })
+                                }
+                              
                             </SearchList>
                         </SearchInfo>
                     </SearchWrapper>
@@ -89,13 +91,15 @@ const mapStateToProps = (state) => {
     return {
         //       两种获取数据的方式是一样的getIn为嵌套获取
         //       state.get("header").get("focused")
-        focused: state.getIn(["header", "focused"])
+        focused: state.getIn(["header", "focused"]),
+        list: state.getIn(["header", "list"])
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleInoutFocus() {
+            dispatch(actionCreators.getSearchList());
             dispatch(actionCreators.searchFocusAction());
         },
         handleInoutBlur() {
