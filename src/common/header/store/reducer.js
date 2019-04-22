@@ -7,16 +7,22 @@ const initialState = fromJS({
     list: []   // 内部的对象数据也会被转化为immutable
 });
 
+// 从原来的采用if-else if的方式切换为switch的方式
 const reducer = (state = initialState, action) => {
-    if(constants.SEARCH_FOCUS === action.type) {
-        return state.set("focused", true)
-    } else if(constants.SEARCH_BLUR === action.type) {
-        return state.set("focused", false);
-    } else if(constants.GET_SEARCH_LIST === action.type) {
-        return state.set("list", action.data);
+    switch(action.type) {
+        case constants.SEARCH_FOCUS:
+            return state.set("focused", true);
+        
+        case constants.SEARCH_BLUR:
+            return state.set("focused", false);
+        
+        case constants.GET_SEARCH_LIST:
+            return state.set("list", action.data);
+        
+        default:
+            return state;
     }
     
-    return state;
 }
 
 export { reducer };

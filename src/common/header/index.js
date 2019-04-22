@@ -20,6 +20,13 @@ import {
 
 class Header extends Component {
     render() {
+        const { 
+            focused, 
+            handleInoutFocus, 
+            handleInoutBlur, 
+            list 
+        } = this.props;
+
         return (
             <HeaderWrapper>
                 <Logo />
@@ -33,31 +40,31 @@ class Header extends Component {
                     </NavItem>
                     <SearchWrapper>
                         <CSSTransition
-                            in={this.props.focused}
+                            in={focused}
                             timeout={300}
                             classNames="slide"
                         >
                             <NavSearch
-                                onFocus={this.props.handleInoutFocus}
-                                onBlur={this.props.handleInoutBlur}
+                                onFocus={handleInoutFocus}
+                                onBlur={handleInoutBlur}
                             ></NavSearch>
                         </CSSTransition>
                         <CSSTransition
-                            in={this.props.focused}
+                            in={focused}
                             timeout={300}
                             classNames="slide"
                         >
                             <i className={"iconfont"}>&#xe601;</i>
                         </CSSTransition>
 
-                        <SearchInfo className={this.props.focused ? "focused" : ""}>
+                        <SearchInfo className={focused ? "focused" : ""}>
                             <SearchTitle>
                                 <span>热门搜索</span>
                                 <a href="www.baidu.com">换一批</a>
                             </SearchTitle>
                             <SearchList>
                                 {
-                                    this.props.list.map((item) => {
+                                    list.map((item) => {
                                         return  <SearchItem key={item}>
                                                     <a href="www.baidu.com">
                                                         {item}
