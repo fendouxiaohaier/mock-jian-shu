@@ -100,7 +100,7 @@ export const SearchInfo = styled.div`
         left: 20px;
         top:-8px;
         border: 8px solid;
-        border-color: #fff; transparent transparent #fff;
+        border-color: #fff transparent transparent #fff;
         transform: rotate(45deg);
     }
 `;
