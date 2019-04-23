@@ -10,3 +10,5 @@ export const SEARCH_MOUSE_ENTER = "header/search_mouse_enter";
 export const SEARCH_MOUSE_LEAVE = "header/search_mouse_leave";
 
 export const CHANGE_SEARCH_LIST = "header/change_search_list";
+
+export const CHANGE_SWITCH_ICON_DEG = "header/change_switch_icon_deg";

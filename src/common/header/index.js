@@ -19,11 +19,6 @@ import {
 } from "./styled.js";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-
-        this.switchIconRef = React.createRef();
-    }
 
     getHotSearchList() {
         const { list, curIndex } = this.props;
@@ -53,6 +48,7 @@ class Header extends Component {
             mouseIn, 
             curIndex,
             list,
+            switchIconRotateDeg,
             handleInoutFocus, 
             handleInoutBlur, 
             handleMouseEnter,
@@ -95,12 +91,12 @@ class Header extends Component {
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <SearchTitle>
+                            <SearchTitle rotatedeg={switchIconRotateDeg}>
                                 <span>热门搜索</span>
                                 <a href="/" 
-                                    onClick={(e) => {handleChangeSearchList(curIndex, list.toJS().length, this.switchIconRef, e)}}
+                                    onClick={(e) => {handleChangeSearchList(curIndex, list.toJS().length, e)}}
                                 >
-                                    <i className="iconfont switchIcon" ref={this.switchIconRef}>&#xe608;</i>换一批
+                                    <i className="iconfont switchIcon" >&#xe608;</i>换一批
                                 </a>
                             </SearchTitle>
                             <SearchList>{ this.getHotSearchList() }</SearchList>
@@ -129,6 +125,7 @@ const mapStateToProps = (state) => {
         //       两种获取数据的方式是一样的getIn为嵌套获取
         //       state.get("header").get("focused")
         focused: state.getIn(["header", "focused"]),
+        switchIconRotateDeg: state.getIn(["header", "switchIconRotateDeg"]),
         mouseIn: state.getIn(["header", "mouseIn"]),
         curIndex: state.getIn(["header", "curIndex"]),
         list: state.getIn(["header", "list"])
@@ -151,17 +148,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.searchMouseLeave());
         },
 
-        handleChangeSearchList(curIndex, totleLength, switchIconRef, e) {
+        handleChangeSearchList(curIndex, totleLength, e) {
             e.preventDefault();  // 阻止a标签的默认事件
 
-            // 换一批图标旋转动画
-            let rotateDeg = switchIconRef.current.style.transform.replace(/[^0-9]/ig, "");
-            if(rotateDeg) {
-                rotateDeg = parseInt(rotateDeg)
-            } else {
-                rotateDeg = 0;
-            }
-            switchIconRef.current.style.transform = `rotate(${rotateDeg+360}deg)`;
+            dispatch(actionCreators.changeSwitchIconDeg())
 
             dispatch(actionCreators.ChangeSearchList((curIndex + 10) % totleLength));
         }

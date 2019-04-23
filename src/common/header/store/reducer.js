@@ -3,6 +3,7 @@ import { fromJS } from "immutable";
 
 // 创建immutable数据
 const initialState = fromJS({
+    switchIconRotateDeg: 0,
     focused: false,
     mouseIn: false,  // 鼠标是否移入热门搜索显示框
     curIndex: 0,  // 热门搜索index坐标，表示下一次显示热门搜索应该从list数据的哪里开始选取，一共选取10个
@@ -28,6 +29,10 @@ const reducer = (state = initialState, action) => {
 
         case constants.CHANGE_SEARCH_LIST:
             return state.set("curIndex", action.curIndex);
+
+        case constants.CHANGE_SWITCH_ICON_DEG:
+            return state.set("switchIconRotateDeg", (state.get("switchIconRotateDeg")+360));
+            
         default:
             return state;
     }

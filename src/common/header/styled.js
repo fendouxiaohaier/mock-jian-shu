@@ -128,6 +128,7 @@ export const SearchTitle = styled.div`
             font-size: 12px;
             margin-right: 3px;
             transition: all .2s ease-in;
+            transform: rotate(${props => props.rotatedeg}deg);
         }
     }
 `;

@@ -23,6 +23,10 @@ export const ChangeSearchList = (curIndex) => ({
     curIndex
 });
 
+export const changeSwitchIconDeg = () => ({
+    type: constants.CHANGE_SWITCH_ICON_DEG
+});
+
 export const getSearchList = () => {
     return (dispatch) => {
         axios.get("/api/getSearchList.json").then((res) => {
