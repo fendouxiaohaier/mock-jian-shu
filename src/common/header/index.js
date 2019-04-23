@@ -19,6 +19,12 @@ import {
 } from "./styled.js";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.switchIconRef = React.createRef();
+    }
+
     getHotSearchList() {
         const { list, curIndex } = this.props;
         const hotSearchList = [];
@@ -81,7 +87,7 @@ class Header extends Component {
                             timeout={300}
                             classNames="slide"
                         >
-                            <i className={"iconfont"}>&#xe601;</i>
+                            <i className="iconfont searchIcon">&#xe601;</i>
                         </CSSTransition>
 
                         <SearchInfo 
@@ -92,8 +98,10 @@ class Header extends Component {
                             <SearchTitle>
                                 <span>热门搜索</span>
                                 <a href="/" 
-                                    onClick={(e) => {handleChangeSearchList(curIndex, list.toJS().length, e)}}
-                                >换一批</a>
+                                    onClick={(e) => {handleChangeSearchList(curIndex, list.toJS().length, this.switchIconRef, e)}}
+                                >
+                                    <i className="iconfont switchIcon" ref={this.switchIconRef}>&#xe608;</i>换一批
+                                </a>
                             </SearchTitle>
                             <SearchList>{ this.getHotSearchList() }</SearchList>
                         </SearchInfo>
@@ -143,8 +151,18 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.searchMouseLeave());
         },
 
-        handleChangeSearchList(curIndex, totleLength, e) {
+        handleChangeSearchList(curIndex, totleLength, switchIconRef, e) {
             e.preventDefault();  // 阻止a标签的默认事件
+
+            // 换一批图标旋转动画
+            let rotateDeg = switchIconRef.current.style.transform.replace(/[^0-9]/ig, "");
+            if(rotateDeg) {
+                rotateDeg = parseInt(rotateDeg)
+            } else {
+                rotateDeg = 0;
+            }
+            switchIconRef.current.style.transform = `rotate(${rotateDeg+360}deg)`;
+
             dispatch(actionCreators.ChangeSearchList((curIndex + 10) % totleLength));
         }
     }

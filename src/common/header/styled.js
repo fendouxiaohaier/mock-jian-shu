@@ -50,7 +50,7 @@ export const SearchWrapper = styled.div`
     float: left;
     position: relative;
     margin-top: 9px; 
-    .iconfont {
+    .searchIcon {
         position: absolute;
         bottom: 3px;
         right: 5px;
@@ -122,6 +122,13 @@ export const SearchTitle = styled.div`
         border-width: 0;
         padding: 0;
         text-decoration: none;
+
+        & > .switchIcon {
+            display: inline-block;
+            font-size: 12px;
+            margin-right: 3px;
+            transition: all .2s ease-in;
+        }
     }
 `;
 
