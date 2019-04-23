@@ -74,7 +74,7 @@ class Header extends Component {
                             classNames="slide"
                         >
                             <NavSearch
-                                onFocus={handleInoutFocus}
+                                onFocus={() => {handleInoutFocus(list)}}
                                 onBlur={handleInoutBlur}
                             ></NavSearch>
                         </CSSTransition>
@@ -134,8 +134,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleInoutFocus() {
-            dispatch(actionCreators.getSearchList());
+        handleInoutFocus(list) {
+            (list.toJS().length <= 0) && dispatch(actionCreators.getSearchList());
             dispatch(actionCreators.searchFocusAction());
         },
         handleInoutBlur() {
