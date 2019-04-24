@@ -52,3 +52,26 @@ export const ArticleInfo = styled.div`
         overflow: hidden;
     }
 `;
+
+export const ArticleMoreInfo = styled.div`
+    height: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    
+    & > span {
+        margin-right: 10px;
+
+        .iconfont {
+            font-size: 13px;
+        }
+    }
+
+    & > .diamond {
+        color: #ea6f5a!important;
+    }
+
+    & > .nickName {
+        color: #787878;
+    }
+`;
