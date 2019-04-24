@@ -1,4 +1,8 @@
 import React , { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { actionCreator } from "./store";
+
 import {
     HomeWrapper,
     HomeLft,
@@ -11,7 +15,7 @@ import ReCommend from "./components/Recommend/";
 import Writer from "./components/Writer";
 
 
-export default class Home extends Component {
+class Home extends Component {
     render() {
         return (
             <HomeWrapper>
@@ -27,4 +31,17 @@ export default class Home extends Component {
             </HomeWrapper>
         );
     }
+
+    componentDidMount() {
+        axios.get("/api/getHomeList.json").then((res) => {
+            const result = res.data.data;
+            this.props.changeHomeList( actionCreator.changeHomeList(result) );
+        });
+    }
 }
+const mapDispatch = (dispatch) => ({
+    changeHomeList(action) {
+        dispatch( action );
+    }
+});
+export default connect(null, mapDispatch)(Home);
