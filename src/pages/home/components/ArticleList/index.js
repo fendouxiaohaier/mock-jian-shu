@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { Component } from "react";
 import {
     ArticleListWrapper,
@@ -16,16 +17,16 @@ class ArticleList extends Component {
                         <p className="article_list_content">关于这个话题，月儿先碎碎念👇 大家不觉得， 没有存款的女孩子买奢侈品现象很严重吗？ 一定要攒钱买香奈儿，口红要买YSL档次之上…曾经看过一张图</p>
                         <ArticleMoreInfo>
                             <span className="diamond">
-                                <i class="iconfont">&#xe607;</i> 3.1
+                                <i className="iconfont">&#xe607;</i> 3.1
                             </span>
                             <span className="nickName">
                                 <a href="/">0061澳洲制造官网</a>
                             </span>
                             <span className="comments">
-                                <a href="/"><i class="iconfont">&#xe60b;</i> 5</a>
+                                <a href="/"><i className="iconfont">&#xe60b;</i> 5</a>
                             </span>
                             <span className="like">
-                                <i class="iconfont">&#xe61b;</i> 21
+                                <i className="iconfont">&#xe61b;</i> 21
                             </span>
                         </ArticleMoreInfo>
                     </ArticleInfo>

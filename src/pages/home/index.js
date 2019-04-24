@@ -5,10 +5,10 @@ import {
     HomeRight
 } from "./style.js";
 
-import Topic from "./components/Topic";
-import List from "./components/ArticleList";
-import ReCommend from "./components/recommend";
-import Writer from "./components/writer";
+import Topic from "./components/Topic/";
+import List from "./components/ArticleList/";
+import ReCommend from "./components/Recommend/";
+import Writer from "./components/Writer";
 
 
 export default class Home extends Component {
