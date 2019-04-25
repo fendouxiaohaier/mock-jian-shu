@@ -5,7 +5,8 @@ import { actionCreator } from "./store";
 import {
     HomeWrapper,
     HomeLft,
-    HomeRight
+    HomeRight,
+    ScrollToTopBtn
 } from "./style.js";
 
 import Topic from "./components/Topic/";
@@ -27,17 +28,55 @@ class Home extends Component {
                     <ReCommend></ReCommend>
                     <Writer></Writer>
                 </HomeRight>
+                {
+                    this.props.showScrollToTopBtn
+                    ? ( <ScrollToTopBtn onClick={this.handleScrollToTop}>
+                            <i className="iconfont">&#xe61b;</i>
+                        </ScrollToTopBtn>)
+                    : null
+                }
+                
             </HomeWrapper>
         );
     }
 
     componentDidMount() {
        this.props.changeHomeList();
+
+       this.bindEventListener();
+    }
+
+    bindEventListener() {
+        window.addEventListener("scroll", this.throttle(this.props.handleScroll, 100));
+    }
+
+    // 暂时把这个工具函数放在这里
+    throttle(fn, priorid) {
+        let prevDate = +new Date();
+        return (...args) => {
+            if(+new Date() - priorid > prevDate) {
+                prevDate = +new Date();
+                fn.apply(this, args);
+            }
+        }
+    }
+
+    handleScrollToTop() {
+        window.scrollTo(0, 0);
     }
 }
 const mapDispatch = (dispatch) => ({
     changeHomeList() {
         dispatch( actionCreator.changeHomeList() );
+    },
+    handleScroll(e) {
+        console.log(document.documentElement.scrollTop);
+        // 滚动的高度大于200px时才显示‘返回顶部按钮’
+        dispatch(actionCreator.toggleScrollBtn( (document.documentElement.scrollTop > 200) ));
     }
 });
-export default connect(null, mapDispatch)(Home);
+
+const mapState = (state) => ({
+    showScrollToTopBtn: state.getIn(["home", "showScrollToTopBtn"])
+});
+export default connect(mapState, mapDispatch)(Home);

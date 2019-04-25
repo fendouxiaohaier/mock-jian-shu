@@ -25,3 +25,8 @@ export const getMoreArticleList = (articlePage) => {
         });
     }
 }
+
+export const toggleScrollBtn = (showFlag) => ({
+    type: constants.TOGGLE_SCROLL_BTN,
+    flag: showFlag
+});

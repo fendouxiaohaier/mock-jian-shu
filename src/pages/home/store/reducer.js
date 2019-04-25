@@ -6,7 +6,8 @@ const defaultState = fromJS({
     articleList: [],
     recommendList: [],
     writerList: [],
-    articlePage: 0
+    articlePage: 0,
+    showScrollToTopBtn: false
 });
 
 export default (state = defaultState, action) => {
@@ -23,7 +24,8 @@ export default (state = defaultState, action) => {
                 "articleList": state.get("articleList").concat(fromJS(action.list)),
                 "articlePage": action.nextArticlePage
             });
-        
+        case constants.TOGGLE_SCROLL_BTN:
+            return state.set("showScrollToTopBtn", action.flag)
         default:
             return state;
     }
