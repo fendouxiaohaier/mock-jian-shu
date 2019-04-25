@@ -75,3 +75,16 @@ export const ArticleMoreInfo = styled.div`
         color: #787878;
     }
 `;
+
+export const ArticleMoreList = styled.div`
+    height: 40px;
+    margin: 30px auto 60px;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 20px;
+    background-color: #a5a5a5;
+    cursor: pointer;
+    box-sizing: border-box;
+`;

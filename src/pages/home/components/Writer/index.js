@@ -18,8 +18,8 @@ class Writer extends Component {
                 </WriterTitle>
                 <WriterList>
                     {
-                        this.props.list.toJS().map((item) => (
-                            <WriterItem>
+                        this.props.list.toJS().map((item, index) => (
+                            <WriterItem key={index}>
                                 <div className="writer_avatar">
                                     <img src={item.avatarUrl} alt=""/>
                                 </div>

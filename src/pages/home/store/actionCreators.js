@@ -12,3 +12,16 @@ export const changeHomeList = () => {
         });
     }
 }
+
+export const getMoreArticleList = (articlePage) => {
+    return (dispatch) => {
+        axios.get("/api/getMoreArticleList.json?articlePage="+articlePage).then((res) => {
+            const result = res.data.data;
+            dispatch({
+                type: constants.GTE_MORE_ARTICLE_LIST,
+                list: result,
+                nextArticlePage: (articlePage+1)
+            });
+        });
+    }
+}
