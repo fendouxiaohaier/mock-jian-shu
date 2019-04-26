@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { actionCreator } from "../../store/";
 import {
@@ -10,7 +10,7 @@ import {
     ArticleMoreList
 } from "./style.js";
 
-class ArticleList extends Component {
+class ArticleList extends PureComponent {
     render() {
         const { list, getMoreArticleList, articlePage } = this.props;
 
