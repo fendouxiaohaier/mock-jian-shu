@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 import logoUrl from "../../statics/logo.png";
 
 export const HeaderWrapper = styled.div`
@@ -8,7 +8,9 @@ export const HeaderWrapper = styled.div`
     border: 1px solid #ccc;
 `
 
-export const Logo = styled.a`
+export const Logo = styled(Link).attrs({
+    to: "/"
+})`
     width: 100px;
     height: 56px;
     position: absolute;
@@ -16,9 +18,6 @@ export const Logo = styled.a`
     left: 0;
     background: url(${logoUrl});
     background-size: contain;
-
-    opacity: 0;  /*暂时隐藏*/
-
 `;
 
 export const Nav = styled.div`

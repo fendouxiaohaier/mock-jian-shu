@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { actionCreator } from "../../store/";
 import {
     ArticleListWrapper,
@@ -20,7 +21,7 @@ class ArticleList extends PureComponent {
                    list.toJS().map((item, index) => (
                             <ArticleItem key={index}>
                                 <ArticleInfo>
-                                    <a className="article_list_title" href="/">{item.title}</a>
+                                    <Link className="article_list_title" to="/detail">{item.title}</Link>
                                     <p className="article_list_content">{item.content}</p>
                                     <ArticleMoreInfo>
                                         <span className="diamond">
