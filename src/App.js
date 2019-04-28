@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import store from "./store/index.js";
 import Header from "./common/header/index.js";
 import Home from "./pages/home/index.js";
+import Detail from "./pages/detail/index.js";
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
               <Header />
               <Switch>
                 <Route path="/" exact component={Home}/>
-                <Route path="/detail" exact render={() => {return (<div>detail</div>)}}/>
+                <Route path="/detail" exact component={Detail}/>
               </Switch>
             </div>
           </BrowserRouter>
