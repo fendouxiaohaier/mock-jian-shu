@@ -15,7 +15,7 @@ class App extends Component {
               <Header />
               <Switch>
                 <Route path="/" exact component={Home}/>
-                <Route path="/detail" exact component={Detail}/>
+                <Route path="/detail/:id" exact component={Detail}/>
               </Switch>
             </div>
           </BrowserRouter>

@@ -19,7 +19,8 @@ class Detail extends Component {
     }
 
     componentDidMount() {
-        this.props.getDetail();
+        console.log(this.props);
+        this.props.getDetail(this.props.match.params.id);
     }
 } 
 
@@ -32,8 +33,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDetail() {
-            dispatch(actionCreator.changeDetail())
+        getDetail(id) {
+            dispatch(actionCreator.changeDetail(id))
         }
     }
 }

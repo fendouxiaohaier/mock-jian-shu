@@ -21,7 +21,7 @@ class ArticleList extends PureComponent {
                    list.toJS().map((item, index) => (
                             <ArticleItem key={index}>
                                 <ArticleInfo>
-                                    <Link className="article_list_title" to="/detail">{item.title}</Link>
+                                    <Link className="article_list_title" to={"/detail/"+item.id}>{item.title}</Link>
                                     <p className="article_list_content">{item.content}</p>
                                     <ArticleMoreInfo>
                                         <span className="diamond">
