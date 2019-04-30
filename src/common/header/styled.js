@@ -26,6 +26,7 @@ export const Nav = styled.div`
     margin: 0 auto;
     padding-right: 30px;
     box-sizing: border-box;
+    cursor: pointer;
 `;
 
 export const NavItem = styled.div`

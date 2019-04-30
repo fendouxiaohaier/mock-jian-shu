@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { actionCreators } from "./store";
+import { actionCreator as loginActionCreator } from "../../pages/login/store";
+import { Link } from "react-router-dom";
 
 import {
     HeaderWrapper,
@@ -47,13 +49,15 @@ class Header extends Component {
             focused,
             mouseIn, 
             curIndex,
+            loginState,
             list,
             switchIconRotateDeg,
             handleInoutFocus, 
             handleInoutBlur, 
             handleMouseEnter,
             handleMouseLeave,
-            handleChangeSearchList
+            handleChangeSearchList,
+            handleLogout
         } = this.props;
 
         return (
@@ -63,7 +67,12 @@ class Header extends Component {
                 <Nav>
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
-                    <NavItem className="right">登录</NavItem>
+                    {
+                        loginState ?
+                        <NavItem onClick={handleLogout} className="right">退出</NavItem>
+                        : <Link to="/login"><NavItem className="right">登录</NavItem></Link>
+                    }
+                   
                     <NavItem className="right">
                         <i className="iconfont">&#xe605;</i>
                     </NavItem>
@@ -128,7 +137,8 @@ const mapStateToProps = (state) => {
         switchIconRotateDeg: state.getIn(["header", "switchIconRotateDeg"]),
         mouseIn: state.getIn(["header", "mouseIn"]),
         curIndex: state.getIn(["header", "curIndex"]),
-        list: state.getIn(["header", "list"])
+        list: state.getIn(["header", "list"]),
+        loginState: state.getIn(["login", "loginState"])
     }
 }
 
@@ -154,6 +164,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actionCreators.changeSwitchIconDeg())
 
             dispatch(actionCreators.ChangeSearchList((curIndex + 10) % totleLength));
+        },
+        handleLogout() {
+            dispatch(loginActionCreator.logout());
         }
     }
 }
