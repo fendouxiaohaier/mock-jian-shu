@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.div`
 `
 
 export const Logo = styled(Link).attrs({
-    to: "/"
+    to: "/index.html"
 })`
     width: 100px;
     height: 56px;

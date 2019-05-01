@@ -13,6 +13,7 @@ import {
 class Login extends PureComponent {
     render() {
         const { loginState } = this.props;
+        console.log(loginState);
         if(!loginState) {
             return (
                 <LoginWrapper>
@@ -24,7 +25,7 @@ class Login extends PureComponent {
                 </LoginWrapper> 
             )
         } else {
-            return (<Redirect to="/index.html" />)
+            return (<Redirect to="/" />)
         }
     }
 }
