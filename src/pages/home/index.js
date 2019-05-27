@@ -63,6 +63,7 @@ class Home extends Component {
 
     handleScrollToTop() {
         window.scrollTo(0, 0);
+        console.log("window.scrollTo");
     }
 }
 const mapDispatch = (dispatch) => ({
